@@ -3,31 +3,22 @@ import axios from 'axios';
 
 function Feed() {
 
-    const [users, setUsers] = useState([
-        {
-            name: 'Ryan',
-            comment: 'Hello',
-        },
-        {
-            name: 'Jason',
-            comment: 'World',
-        },
-        {
-            name: 'Conary',
-            comment: 'Uhhhhhh',
-        },
-    ]);
+    const [users, setUsers] = useState();
 
-    // useEffect(() => {
-    //     axios.get("url")
-    //     .then(res => {
-    //         console.log(res)
-    //         setUsers(res)
-    //     })
-    //     .catch(err => {
-    //         console.log(err.message);
-    //     })
-    // },[])
+    useEffect(() => {
+        axios.get("https://practice-be.herokuapp.com/")
+        .then(res => {
+            console.log(res)
+            setUsers(res.data.posts)
+        })
+        .catch(err => {
+            console.log(err.message);
+        })
+    },[])
+
+    if (!users) {
+        return <div>Loading ...</div>
+    }
 
     return (
         <div className="Feed">
