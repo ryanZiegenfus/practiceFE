@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Card } from 'semantic-ui-react'
 
 function Feed() {
 
@@ -23,10 +24,11 @@ function Feed() {
     return (
         <div className="Feed">
             {users.map(user =>
-                <div>
-                    <div>{user.name}</div>
-                    <div>{user.comment}</div>
-                </div>
+                <Card
+                className='card'
+                header={user.name}
+                description={user.comment}
+                />
             )}
         </div>
     );
